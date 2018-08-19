@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="gamearena">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title  -->
+    <title>Gamers & Games Arena | Genre</title>
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="css/core-style.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body ng-controller="gamecontrol">
+    <!-- Search Wrapper Area Start -->
+    <div class="search-wrapper section-padding-100">
+        <div class="search-close">
+            <i class="fa fa-close" aria-hidden="true"></i>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="search-content">
+                        <form>
+                            <input type="search" name="search" id="search" ng-model="search.title" placeholder="Type your keyword...">
+                            <button><img src="img/core-img/search.png" alt=""></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Search Wrapper Area End -->
+
+    <!-- ##### Main Content Wrapper Start ##### -->
+    <div class="main-content-wrapper d-flex clearfix">
+
+        <!-- Mobile Nav (max width 767px)-->
+        <div class="mobile-nav">
+            <!-- Navbar Brand -->
+            <div class="amado-navbar-brand">
+                <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+            </div>
+            <!-- Navbar Toggler -->
+            <div class="amado-navbar-toggler">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <!-- Header Area Start -->
+        <header class="header-area clearfix">
+            <!-- Close Icon -->
+            <div class="nav-close">
+                <i class="fa fa-close" aria-hidden="true"></i>
+            </div>
+            <!-- Logo -->
+            <div class="logo">
+                <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+            </div>
+            <!-- Amado Nav -->
+            <nav class="amado-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active"><a href="platform.html">Platform</a></li>
+                </ul>
+            </nav>
+            <!-- Button Group -->
+            <div class="amado-btn-group mt-30 mb-100">
+                <a href="newadd.html" class="btn amado-btn mb-15">New Release</a>
+                <a href="trending.html" class="btn amado-btn active">Trending Now</a>
+            </div>
+            <!-- Cart Menu -->
+            <div class="cart-fav-search mb-100">
+                <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
+            </div>
+            <!-- Social Button -->
+            <div class="social-info d-flex justify-content-between">
+                <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            </div>
+        </header>
+        <!-- Header Area End -->
+
+        <div class="shop_sidebar_area">
+
+            <!-- ##### Single Widget ##### -->
+            <div class="widget catagory mb-50">
+                <!-- Widget Title -->
+                <h6 class="widget-title mb-30">Catagories</h6>
+
+                <!--  Catagories  -->
+                <div class="catagories-menu">
+                    <ul>
+                        <li><a href="platform.html">PC</a></li>
+                        <li><a href="playplat.html">Playstation<!-- playstation,playstation 3, playstation vita--></a></li>
+                        <li><a href="macplat.html">Mac/Iphone/Ipad</a></li>
+                        <li><a href="gbplat.html">Game Boy<!-- game boy, game boy color, game.com--></a></li>
+                        <li><a href="dcplat.html">Dreamcast</a></li>
+                        <li><a href="ninplat.html">Nintendo</a></li>
+                        <li><a href="xboxplat.html">Xbox 360</a></li>
+                        <li class="active"><a href="#">Others</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="amado_product_area section-padding-100">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="product-topbar d-xl-flex align-items-end justify-content-between">
+                            <!-- Sorting -->
+                            <div class="product-sorting d-flex">
+                                <div class="sort-by-date d-flex align-items-center mr-15">
+                                    <p>Sort by:- </p>
+                                            <span id="sort1" style="margin-left: 10px; border-bottom: thin solid black; cursor: pointer;" ng-click="sortby('-release_year')" onclick="change('sort1')"> Newest</span>
+                                            <span id="sort2" style="margin-left: 15px; cursor: pointer;" ng-click="sortby('-score')" onclick="change('sort2')" > Score--High to Low</span>
+                                            <span id="sort3" style="margin-left: 15px; cursor: pointer;" ng-click="sortby('score')" onclick="change('sort3')" > Score--Low to High</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<script>
+    function change(id)
+{
+    console.log("kuch toh ho");
+  var x=document.getElementById("sort1");
+  x.style.borderBottom = "none";
+  var y= document.getElementById("sort2");
+  y.style.borderBottom = "none";
+  var z=document.getElementById("sort3");
+  z.style.borderBottom = "none";
+  document.getElementById(id).style.borderBottom = "thin solid black" ;
+}
+</script>
+                <div class="row" ng-init="limit = 14">
+
+                    <!-- Single Product Area -->
+                    <div class="col-12 col-sm-6 col-md-12 col-xl-6" ng-repeat="game in otherGames | orderBy: sortvalue | filter: search | limitTo: limit as results">
+                        <a href="http://ign.com{{game.url}}"><div class="single-product-wrapper">
+                            <!-- Product Image -->
+                            <div class="product-img">
+                                <img src="img/product-img/product1.jpg" alt="">
+                                <!-- Hover Thumb -->
+                                <img class="hover-img" src="img/product-img/product2.jpg" alt="">
+                            </div>
+
+                            <!-- Product Description -->
+                            <div class="product-description d-flex align-items-center justify-content-between">
+                                <!-- Product Meta Data -->
+                                <div class="product-meta-data">
+                                    <h6>Platfrom:- {{ game.platform }}</h6>
+                                    <p class="product-price">{{ game.title }}</p>
+                                    <h6>Genre:- {{ game.genre }}</h6>
+                                </div>
+                                <!-- Ratings & Cart -->
+                                <div class="ratings-cart text-right">
+                                    <span ng-if=" game.editors_choice == 'Y'" class="fa fa-star" aria-hidden="true"></span>
+                                    <p>{{ game.score}}</p>
+                                    <p>Released:-{{ game.release_year}}</p>
+                                </div>
+                            </div>
+                        </div></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                     <button ng-hide="results.length === pcGames.length" ng-click="limit = limit + 14">Show more..</button>
+                    </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <!-- ##### Main Content Wrapper End ##### -->
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer_area clearfix">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Single Widget Area -->
+                <div class="col-12 col-lg-4">
+                    <div class="single_widget_area">
+                        <!-- Logo -->
+                        <div class="footer-logo mr-50">
+                            <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Widget Area -->
+                <div class="col-12 col-lg-8">
+                    <div class="single_widget_area">
+                        <!-- Footer Menu -->
+                        <div class="footer_menu">
+                            <nav class="navbar navbar-expand-lg justify-content-end">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#footerNavContent" aria-controls="footerNavContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+                                <div class="collapse navbar-collapse" id="footerNavContent">
+                                    <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="index.html">Home</a>
+                                        </li>
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="platform.html">Platform</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="newadd.html">New Release</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="trending.html">Trending Now</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>
+    <script src="js/angular.min.js"></script>
+<script src="js/angular-route.min.js"></script>
+<script src="app.js"></script>
+
+</body>
+
+</html>

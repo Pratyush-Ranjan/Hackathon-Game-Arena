@@ -1,0 +1,6 @@
+    .go{
+        visibility: hidden;
+    }
+    .gogo:hover .go{
+        visibility: visible;
+    }
