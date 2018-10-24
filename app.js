@@ -21,6 +21,7 @@ $http.get('http://starlord.hackerearth.com/gamesext')
     })
     .success(function (data, status, headers, config) {
         $scope.Games = data;
+        $scope.mine="prs";
         angular.forEach($scope.Games, function (value,key){
         if(value.platform == "PC"){
         $scope.pcGames.push(value);
